@@ -12,10 +12,10 @@ app.use(bodyParser.json());
 
 // Configurar conexión a PostgreSQL
 const pool = new Pool({
-  user: "postgres", // Reemplaza con tu usuario de PostgreSQL
+  user: "postgres", 
   host: "localhost",
   database: "likeme",
-  password: "123456", // Reemplaza con tu contraseña
+  password: "123456", 
   port: 5432,
 });
 
