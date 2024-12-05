@@ -45,6 +45,32 @@ app.post("/posts", async (req, res) => {
   }
 });
 
+// Ruta para agregar LIKES
+app.put("/posts/like/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await pool.query("UPDATE posts SET likes = likes + 1 WHERE id = $1", [id]);
+    res.send("Like registrado correctamente");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error al registrar el like");
+  }
+});
+
+// Ruta para eliminar un posts
+app.delete("/posts/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await pool.query("DELETE FROM posts WHERE id = $1", [id]);
+    res.send("Post eliminado correctamente");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error al eliminar el post");
+  }
+});
+
+
+
 // Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor ejecutándose en http://localhost:${port}`);
